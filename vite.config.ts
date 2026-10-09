@@ -4,7 +4,14 @@ import path from 'path';
 import {defineConfig} from 'vite';
 
 export default defineConfig(() => {
+  // En GitHub Actions, GITHUB_REPOSITORY es 'propietario/nombre-del-repo'
+  // Esto genera automáticamente la ruta base correcta '/nombre-del-repo/'
+  const repoName = process.env.GITHUB_REPOSITORY
+    ? `/${process.env.GITHUB_REPOSITORY.split('/')[1]}/`
+    : './';
+
   return {
+    base: repoName,
     plugins: [react(), tailwindcss()],
     resolve: {
       alias: {
