@@ -1,5 +1,6 @@
 import React from 'react';
 import { Cpu, Zap, Activity, HardDrive, Compass, ChevronDown } from 'lucide-react';
+import { GlossaryTerm } from './GlossaryTerm';
 
 interface HeroSectionProps {
   onExploreAnatomy: () => void;
@@ -34,12 +35,12 @@ export const HeroSection: React.FC<HeroSectionProps> = ({ onExploreAnatomy, onEx
             </span>
           </h1>
 
-          {/* Core premise */}
+          {/* Core premise with interactive glossary terms */}
           <p className="text-base sm:text-lg text-slate-300 leading-relaxed max-w-3xl mx-auto">
             La placa base (motherboard o tarjeta madre) es el circuito impreso multicapa más complejo del sistema.
             Actúa como centro neurálgico coordinando el microprocesador, la memoria RAM de acceso directo,
-            los buses de expansión PCIe de alta velocidad, los módulos de alimentación VRM multifase y
-            el ecosistema de almacenamiento e interfaces de entrada/salida.
+            los buses de expansión <GlossaryTerm term="pcie">PCIe</GlossaryTerm> de alta velocidad, los módulos de alimentación <GlossaryTerm term="vrm">VRM</GlossaryTerm> multifase y
+            el ecosistema de almacenamiento <GlossaryTerm term="m2">NVMe</GlossaryTerm> e interfaces de entrada/salida.
           </p>
 
           {/* Action CTAs */}
@@ -69,7 +70,7 @@ export const HeroSection: React.FC<HeroSectionProps> = ({ onExploreAnatomy, onEx
             </div>
             <h3 className="text-base font-bold text-white mb-1">Interconexión Central</h3>
             <p className="text-xs text-slate-400 leading-relaxed">
-              Enlaza el zócalo de la CPU con la memoria mediante buses directos de baja latencia e interfaces serie DMI/UMI hacia el chipset.
+              Enlaza el zócalo de la CPU con la memoria mediante <GlossaryTerm term="imc">IMC</GlossaryTerm> e interfaces serie <GlossaryTerm term="dmi">DMI</GlossaryTerm> hacia el <GlossaryTerm term="chipset">chipset</GlossaryTerm>.
             </p>
           </div>
 
@@ -77,9 +78,9 @@ export const HeroSection: React.FC<HeroSectionProps> = ({ onExploreAnatomy, onEx
             <div className="w-10 h-10 rounded-lg bg-emerald-950/70 border border-emerald-800/40 flex items-center justify-center text-emerald-400 mb-3">
               <Zap className="w-5 h-5" />
             </div>
-            <h3 className="text-base font-bold text-white mb-1">Regulación Eléctrica (VRM)</h3>
+            <h3 className="text-base font-bold text-white mb-1">Regulación Eléctrica (<GlossaryTerm term="vrm">VRM</GlossaryTerm>)</h3>
             <p className="text-xs text-slate-400 leading-relaxed">
-              Convierte los +12V de la fuente en voltajes dinámicos milivoltio-precisos (0.7V - 1.4V) con corrientes de más de 300A para la CPU.
+              Convierte los +12V de la fuente mediante etapas <GlossaryTerm term="drmos">DrMOS / SPS</GlossaryTerm> en voltajes milivoltio-precisos (0.7V - 1.4V) con corrientes de más de 300A para la CPU.
             </p>
           </div>
 
@@ -87,9 +88,9 @@ export const HeroSection: React.FC<HeroSectionProps> = ({ onExploreAnatomy, onEx
             <div className="w-10 h-10 rounded-lg bg-amber-950/70 border border-amber-800/40 flex items-center justify-center text-amber-400 mb-3">
               <Activity className="w-5 h-5" />
             </div>
-            <h3 className="text-base font-bold text-white mb-1">Buses de Expansión PCIe</h3>
+            <h3 className="text-base font-bold text-white mb-1">Buses de Expansión <GlossaryTerm term="pcie">PCIe</GlossaryTerm></h3>
             <p className="text-xs text-slate-400 leading-relaxed">
-              Canales diferenciales serie escalables (x1 a x16) que han multiplicado por más de 50.000 veces el ancho de banda del ISA original.
+              Canales diferenciales serie escalables (x1 a x16) que han multiplicado por más de 50.000 veces el ancho de banda del ISA original hasta <GlossaryTerm term="pam4">PCIe 6.0</GlossaryTerm>.
             </p>
           </div>
 
@@ -99,7 +100,7 @@ export const HeroSection: React.FC<HeroSectionProps> = ({ onExploreAnatomy, onEx
             </div>
             <h3 className="text-base font-bold text-white mb-1">Almacenamiento & E/S</h3>
             <p className="text-xs text-slate-400 leading-relaxed">
-              De cintas de cassette e IDE de 8 MB/s a ranuras M.2 NVMe Gen 5 conectadas directamente a los carriles PCIe a más de 14.500 MB/s.
+              De cintas de cassette e IDE de 8 MB/s a ranuras <GlossaryTerm term="m2">M.2 NVMe Gen 5</GlossaryTerm> conectadas directamente a los carriles PCIe a más de 14.500 MB/s.
             </p>
           </div>
         </div>

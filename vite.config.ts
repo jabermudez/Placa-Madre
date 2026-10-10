@@ -4,18 +4,16 @@ import path from 'path';
 import {defineConfig} from 'vite';
 
 export default defineConfig(() => {
-  // En GitHub Actions, GITHUB_REPOSITORY es 'propietario/nombre-del-repo'
-  // Esto genera automáticamente la ruta base correcta '/nombre-del-repo/'
-  const repoName = process.env.GITHUB_REPOSITORY
-    ? `/${process.env.GITHUB_REPOSITORY.split('/')[1]}/`
-    : './';
-
+  // './' garantiza compatibilidad universal en GitHub Pages:
+  // Funciona para repositorios con subcarpeta ('/nombre-repo/'),
+  // páginas de usuario ('usuario.github.io'), dominios personalizados,
+  // despliegue mediante GitHub Actions y despliegue directo desde la carpeta /docs.
   return {
-    base: repoName,
+    base: './',
     plugins: [react(), tailwindcss()],
     resolve: {
       alias: {
-        '@': path.resolve(__dirname, '.'),
+        '@': path.resolve(import.meta.dirname, '.'),
       },
     },
     server: {

@@ -5,7 +5,8 @@ import {
   STORAGE_BENCHMARKS,
   FORM_FACTORS
 } from '../data/motherboardData';
-import { BarChart3, Zap, HardDrive, Layers, Info, Check, HelpCircle } from 'lucide-react';
+import { GlossaryTerm } from './GlossaryTerm';
+import { BarChart3, Zap, HardDrive, Layers, Info, Check, HelpCircle, Sparkles } from 'lucide-react';
 
 export const ComparativeBenchmarks: React.FC = () => {
   const [activeTab, setActiveTab] = useState<'buses' | 'memory' | 'storage' | 'formfactors'>('buses');
@@ -81,6 +82,47 @@ export const ComparativeBenchmarks: React.FC = () => {
             <Layers className="w-4 h-4" />
             Factores de Forma (Dimensiones)
           </button>
+        </div>
+
+        {/* Quick Glossary Term Helpers for Benchmarks */}
+        <div className="flex flex-wrap items-center gap-2 mb-6 p-3 rounded-xl bg-slate-900/60 border border-slate-800 text-xs">
+          <span className="text-[11px] font-mono text-cyan-400 flex items-center gap-1 font-semibold">
+            <Sparkles className="w-3.5 h-3.5 text-cyan-400" />
+            Conceptos en esta Comparativa:
+          </span>
+          <div className="flex flex-wrap gap-1.5">
+            {activeTab === 'buses' && (
+              <>
+                <GlossaryTerm term="pcie" showIcon>PCI Express</GlossaryTerm>
+                <GlossaryTerm term="pam4" showIcon>PAM4 (PCIe 6.0)</GlossaryTerm>
+                <GlossaryTerm term="agp" showIcon>AGP</GlossaryTerm>
+                <GlossaryTerm term="isa" showIcon>Bus ISA</GlossaryTerm>
+              </>
+            )}
+            {activeTab === 'memory' && (
+              <>
+                <GlossaryTerm term="dual-channel" showIcon>Dual-Channel</GlossaryTerm>
+                <GlossaryTerm term="pmic" showIcon>PMIC</GlossaryTerm>
+                <GlossaryTerm term="on-die-ecc" showIcon>On-Die ECC</GlossaryTerm>
+                <GlossaryTerm term="xmp" showIcon>XMP / EXPO</GlossaryTerm>
+                <GlossaryTerm term="cam2" showIcon>CAMM2</GlossaryTerm>
+              </>
+            )}
+            {activeTab === 'storage' && (
+              <>
+                <GlossaryTerm term="m2" showIcon>M.2 NVMe</GlossaryTerm>
+                <GlossaryTerm term="sata" showIcon>SATA III</GlossaryTerm>
+                <GlossaryTerm term="pcie" showIcon>Líneas PCIe</GlossaryTerm>
+              </>
+            )}
+            {activeTab === 'formfactors' && (
+              <>
+                <GlossaryTerm term="atx" showIcon>Factor ATX</GlossaryTerm>
+                <GlossaryTerm term="btf" showIcon>Conectores Traseros (BTF)</GlossaryTerm>
+                <GlossaryTerm term="vrm" showIcon>Área VRM</GlossaryTerm>
+              </>
+            )}
+          </div>
         </div>
 
         {/* TAB 1: BUSES COMPARISON */}

@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { LEGENDARY_MODELS, MotherboardModel } from '../data/motherboardData';
+import { GlossaryTerm } from './GlossaryTerm';
 import { Award, Cpu, Zap, Layers, Calendar, ChevronRight, X, ExternalLink, ShieldCheck } from 'lucide-react';
 
 export const MotherboardGallery: React.FC = () => {
@@ -157,27 +158,39 @@ export const MotherboardGallery: React.FC = () => {
               {/* Technical Specifications Grid */}
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 mb-6 text-xs">
                 <div className="bg-slate-950/60 p-3 rounded-lg border border-slate-800/80">
-                  <span className="text-slate-500 block uppercase font-mono text-[10px]">Zócalo de Procesador</span>
+                  <span className="text-slate-500 block uppercase font-mono text-[10px]">
+                    <GlossaryTerm term="socket">Zócalo de Procesador</GlossaryTerm>
+                  </span>
                   <span className="text-slate-200 font-semibold">{selectedModel.socket}</span>
                 </div>
                 <div className="bg-slate-950/60 p-3 rounded-lg border border-slate-800/80">
-                  <span className="text-slate-500 block uppercase font-mono text-[10px]">Chipset de Placa</span>
+                  <span className="text-slate-500 block uppercase font-mono text-[10px]">
+                    <GlossaryTerm term="chipset">Chipset de Placa</GlossaryTerm>
+                  </span>
                   <span className="text-slate-200 font-semibold">{selectedModel.chipset}</span>
                 </div>
                 <div className="bg-slate-950/60 p-3 rounded-lg border border-slate-800/80">
-                  <span className="text-slate-500 block uppercase font-mono text-[10px]">Soporte de Memoria</span>
+                  <span className="text-slate-500 block uppercase font-mono text-[10px]">
+                    <GlossaryTerm term="dual-channel">Soporte de Memoria</GlossaryTerm>
+                  </span>
                   <span className="text-slate-200 font-semibold">{selectedModel.memorySupport}</span>
                 </div>
                 <div className="bg-slate-950/60 p-3 rounded-lg border border-slate-800/80">
-                  <span className="text-slate-500 block uppercase font-mono text-[10px]">Ranuras de Expansión</span>
+                  <span className="text-slate-500 block uppercase font-mono text-[10px]">
+                    <GlossaryTerm term="pcie">Ranuras de Expansión</GlossaryTerm>
+                  </span>
                   <span className="text-slate-200 font-semibold">{selectedModel.expansionSlots}</span>
                 </div>
                 <div className="bg-slate-950/60 p-3 rounded-lg border border-slate-800/80">
-                  <span className="text-slate-500 block uppercase font-mono text-[10px]">Almacenamiento en Placa</span>
+                  <span className="text-slate-500 block uppercase font-mono text-[10px]">
+                    <GlossaryTerm term="sata">Almacenamiento en Placa</GlossaryTerm>
+                  </span>
                   <span className="text-slate-200 font-semibold">{selectedModel.storageInterfaces}</span>
                 </div>
                 <div className="bg-slate-950/60 p-3 rounded-lg border border-slate-800/80">
-                  <span className="text-slate-500 block uppercase font-mono text-[10px]">Regulación Eléctrica (VRM)</span>
+                  <span className="text-slate-500 block uppercase font-mono text-[10px]">
+                    <GlossaryTerm term="vrm">Regulación Eléctrica (VRM)</GlossaryTerm>
+                  </span>
                   <span className="text-slate-200 font-semibold">{selectedModel.specs.vrmPhases}</span>
                 </div>
               </div>

@@ -4,6 +4,7 @@ import {
   ComponentAnatomy 
 } from '../data/motherboardData';
 import { ComponentIllustration } from './ComponentIllustration';
+import { GlossaryTerm } from './GlossaryTerm';
 import { 
   Cpu, 
   Zap, 
@@ -19,8 +20,31 @@ import {
   CheckCircle2,
   X,
   Layers,
-  Sparkles
+  Sparkles,
+  BookOpen
 } from 'lucide-react';
+
+const COMPONENT_GLOSSARY_MAP: Record<number, string[]> = {
+  1: ['chipset'],
+  2: ['vga', 'agp'],
+  3: ['hdmi', 'chipset'],
+  4: ['lan', 'pcie'],
+  5: ['chipset'],
+  6: ['vrm', 'tdp', 'atx'],
+  7: ['vrm', 'drmos', 'tdp'],
+  8: ['socket', 'lga', 'pga', 'imc'],
+  9: ['dual-channel', 'daisy-chain', 't-topology', 'pmic', 'xmp'],
+  10: ['atx', 'btf'],
+  11: ['chipset', 'dmi', 'northbridge', 'southbridge'],
+  12: ['sata', 'm2'],
+  13: ['post', 'q-code'],
+  14: ['cmos', 'post', 'uefi'],
+  15: ['m2', 'pcie', 'sata'],
+  16: ['pcie', 'pam4', 'agp', 'isa'],
+  17: ['pcie', 'chipset'],
+  18: ['chipset'],
+  19: ['uefi', 'post', 'flashback', 'cmos']
+};
 
 export const AnatomyExplorer: React.FC = () => {
   const [selectedComponentId, setSelectedComponentId] = useState<number | null>(null);
@@ -620,9 +644,24 @@ export const AnatomyExplorer: React.FC = () => {
               </div>
 
               {/* Summary Kicker */}
-              <p className="text-xs sm:text-sm text-cyan-200 bg-cyan-950/40 border border-cyan-800/40 p-3.5 rounded-xl leading-relaxed mb-5">
+              <p className="text-xs sm:text-sm text-cyan-200 bg-cyan-950/40 border border-cyan-800/40 p-3.5 rounded-xl leading-relaxed mb-4">
                 {selectedComponent.shortDesc}
               </p>
+
+              {/* Associated Glossary Terms */}
+              {COMPONENT_GLOSSARY_MAP[selectedComponent.id] && COMPONENT_GLOSSARY_MAP[selectedComponent.id].length > 0 && (
+                <div className="flex flex-wrap items-center gap-2 p-2.5 rounded-xl bg-slate-950/80 border border-cyan-900/40 mb-5">
+                  <span className="text-[10px] font-mono text-cyan-400 flex items-center gap-1.5 mr-1 font-semibold">
+                    <Sparkles className="w-3 h-3 text-cyan-400 shrink-0" />
+                    Términos del Glosario:
+                  </span>
+                  <div className="flex flex-wrap gap-1.5">
+                    {COMPONENT_GLOSSARY_MAP[selectedComponent.id].map(termKey => (
+                      <GlossaryTerm key={termKey} term={termKey} showIcon className="text-xs bg-slate-900/90 px-1.5 py-0.5 rounded border border-slate-700/80" />
+                    ))}
+                  </div>
+                </div>
+              )}
 
               {/* Deep Technical Spec Sections */}
               <div className="space-y-4 text-xs">

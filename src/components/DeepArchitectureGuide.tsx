@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { Cpu, Zap, ShieldAlert, Sparkles, Layers, ThermometerSnowflake, FileCode, CheckCircle2 } from 'lucide-react';
+import { GlossaryTerm } from './GlossaryTerm';
 
 export const DeepArchitectureGuide: React.FC = () => {
   const [activeTab, setActiveTab] = useState<'vrm' | 'pcb' | 'uefi' | 'cooling'>('vrm');
@@ -64,11 +65,11 @@ export const DeepArchitectureGuide: React.FC = () => {
                   Sub-sistema de Alimentación Eléctrica
                 </span>
                 <h3 className="text-2xl font-bold text-white mt-1">
-                  Módulo Regulador de Voltaje (VRM: Voltage Regulator Module)
+                  Módulo Regulador de Voltaje (<GlossaryTerm term="vrm">VRM</GlossaryTerm>: Voltage Regulator Module)
                 </h3>
                 <p className="text-xs sm:text-sm text-slate-300 mt-2 leading-relaxed">
                   El procesador no puede alimentarse directamente de los 12 voltios de la fuente de poder; se destruiría en nanosegundos. 
-                  El VRM convierte de forma ultra-eficiente los +12V DC en una tensión dinámica de entre 0.7V y 1.45V (VCore), 
+                  El <GlossaryTerm term="vrm">VRM</GlossaryTerm> convierte de forma ultra-eficiente los +12V DC en una tensión dinámica de entre 0.7V y 1.45V (VCore), 
                   entregando corrientes colosales de hasta 250 a 350 amperios con un rizado de tensión (ripple) de menos de 10 milivoltios.
                 </p>
               </div>
@@ -82,7 +83,9 @@ export const DeepArchitectureGuide: React.FC = () => {
                   </p>
                 </div>
                 <div className="bg-slate-900/60 p-4 rounded-xl border border-slate-800">
-                  <span className="text-xs font-bold text-cyan-400 font-mono block mb-1">Etapas de Potencia DrMOS / SPS</span>
+                  <span className="text-xs font-bold text-cyan-400 font-mono block mb-1">
+                    Etapas de Potencia <GlossaryTerm term="drmos">DrMOS / SPS</GlossaryTerm>
+                  </span>
                   <p className="text-xs text-slate-300 leading-relaxed">
                     Sustituyen a los antiguos MOSFETs discretos "High-Side" y "Low-Side". Integran el controlador de puerta (driver) 
                     y ambos transistores de efecto de campo en un único silicio térmicamente optimizado capaz de soportar hasta 105A continuos.
@@ -146,14 +149,14 @@ export const DeepArchitectureGuide: React.FC = () => {
                 <div className="bg-slate-900/60 p-4 rounded-xl border border-slate-800 space-y-2">
                   <h4 className="font-bold text-white font-mono text-sm flex items-center gap-2">
                     <Cpu className="w-4 h-4 text-emerald-400" />
-                    Ruteo Daisy-Chain vs T-Topology
+                    Ruteo <GlossaryTerm term="daisy-chain">Daisy-Chain</GlossaryTerm> vs <GlossaryTerm term="t-topology">T-Topology</GlossaryTerm>
                   </h4>
                   <p className="leading-relaxed">
-                    <strong>Daisy-Chain:</strong> Las pistas de memoria van primero a la ranura 2 y luego continúan a la ranura 1. 
+                    <strong><GlossaryTerm term="daisy-chain">Daisy-Chain</GlossaryTerm>:</strong> Las pistas de memoria van primero a la ranura 2 y luego continúan a la ranura 1. 
                     Es el diseño dominante hoy porque maximiza la velocidad cuando solo se instalan 2 módulos de RAM (óptimo para DDR5 a 7000+ MT/s).
                   </p>
                   <p className="leading-relaxed text-slate-400">
-                    <strong>T-Topology:</strong> La pista se divide a mitad de camino de forma simétrica hacia ambas ranuras. Ofrece estabilidad equilibrada si se llenan las 4 ranuras, pero penaliza la frecuencia pico.
+                    <strong><GlossaryTerm term="t-topology">T-Topology</GlossaryTerm>:</strong> La pista se divide a mitad de camino de forma simétrica hacia ambas ranuras. Ofrece estabilidad equilibrada si se llenan las 4 ranuras, pero penaliza la frecuencia pico.
                   </p>
                 </div>
               </div>
@@ -179,7 +182,9 @@ export const DeepArchitectureGuide: React.FC = () => {
 
               <div className="grid grid-cols-1 md:grid-cols-3 gap-4 text-xs">
                 <div className="bg-slate-900/60 p-4 rounded-xl border border-slate-800">
-                  <span className="text-xs font-bold text-cyan-400 font-mono block mb-1">Secuencia POST y Q-LEDs</span>
+                  <span className="text-xs font-bold text-cyan-400 font-mono block mb-1">
+                    Secuencia <GlossaryTerm term="post">POST</GlossaryTerm> y Q-LEDs
+                  </span>
                   <p className="text-slate-300 leading-relaxed">
                     Al encenderse, la placa comprueba sucesivamente la CPU, la RAM, la GPU y el almacenamiento de arranque. 
                     Los 4 diodos Q-LED (o una pantalla digital de dos dígitos con códigos hexadecimales de depuración) permiten diagnosticar fallas en segundos.
@@ -193,7 +198,9 @@ export const DeepArchitectureGuide: React.FC = () => {
                   </p>
                 </div>
                 <div className="bg-slate-900/60 p-4 rounded-xl border border-slate-800">
-                  <span className="text-xs font-bold text-cyan-400 font-mono block mb-1">BIOS Flashback Autónomo</span>
+                  <span className="text-xs font-bold text-cyan-400 font-mono block mb-1">
+                    <GlossaryTerm term="flashback">BIOS Flashback</GlossaryTerm> Autónomo
+                  </span>
                   <p className="text-slate-300 leading-relaxed">
                     Un microcontrolador dedicado (ej. chip AI Suite o ITE) puede reprogramar el chip SPI Flash leyendo un archivo desde una memoria USB 
                     incluso con la placa base vacía, sin necesidad de tener CPU, memoria RAM o pantalla conectadas.

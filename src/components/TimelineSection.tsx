@@ -5,6 +5,7 @@ import {
   TimelineMilestone, 
   EraGeneration 
 } from '../data/motherboardData';
+import { GlossaryTerm } from './GlossaryTerm';
 import { 
   Calendar, 
   Cpu, 
@@ -18,8 +19,26 @@ import {
   ArrowRight, 
   Compass, 
   Sparkles,
-  Info
+  Info,
+  BookOpen
 } from 'lucide-react';
+
+const MILESTONE_GLOSSARY_MAP: Record<string, string[]> = {
+  'm-1981': ['isa', 'socket'],
+  'm-1984': ['isa', 'atx'],
+  'm-1993': ['pcie', 'fsb', 'southbridge'],
+  'm-1995': ['atx', 'vrm', 'northbridge'],
+  'm-1997': ['agp', 'fsb', 'vga'],
+  'm-2000': ['fsb', 'vrm', 'dual-channel'],
+  'm-2004': ['pcie', 'lga', 'sata', 'drmos'],
+  'm-2006': ['fsb', 'sata', 'pcie'],
+  'm-2008': ['imc', 'dmi', 'northbridge'],
+  'm-2011': ['uefi', 'post', 'cmos'],
+  'm-2015': ['m2', 'pcie', 'sata'],
+  'm-2017': ['pga', 'vrm', 'xmp'],
+  'm-2021': ['pcie', 'pmic', 'on-die-ecc', 'daisy-chain'],
+  'm-2024': ['btf', 'cam2', 'pam4']
+};
 
 export const TimelineSection: React.FC = () => {
   const [selectedMilestoneId, setSelectedMilestoneId] = useState<string>('m-1995'); // ATX launch by default
@@ -262,6 +281,19 @@ export const TimelineSection: React.FC = () => {
                   <p className="text-sm text-slate-200 leading-relaxed bg-slate-950/60 p-4 rounded-xl border border-slate-800/80">
                     {currentMilestone.details}
                   </p>
+
+                  {/* Associated Glossary Terms for the Era */}
+                  {MILESTONE_GLOSSARY_MAP[currentMilestone.id] && (
+                    <div className="flex flex-wrap items-center gap-1.5 p-3 rounded-xl bg-slate-950/80 border border-cyan-900/40 mt-3">
+                      <span className="text-[10px] font-mono text-cyan-400 flex items-center gap-1 mr-1 font-semibold">
+                        <Sparkles className="w-3 h-3 text-cyan-400" />
+                        Glosario de esta Era:
+                      </span>
+                      {MILESTONE_GLOSSARY_MAP[currentMilestone.id].map(termKey => (
+                        <GlossaryTerm key={termKey} term={termKey} showIcon className="text-xs bg-slate-900 px-1.5 py-0.5 rounded border border-slate-700/60" />
+                      ))}
+                    </div>
+                  )}
                 </div>
 
                 {/* Key Technical Impacts */}

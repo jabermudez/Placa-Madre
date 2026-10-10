@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
-import { Cpu, Layers, GitBranch, Award, BarChart3, BookOpen, Menu, X } from 'lucide-react';
+import { Cpu, Layers, GitBranch, Award, BarChart3, BookOpen, Menu, X, HelpCircle } from 'lucide-react';
+import { useGlossary } from '../context/GlossaryContext';
 
 interface NavbarProps {
   activeSection: string;
@@ -8,6 +9,7 @@ interface NavbarProps {
 
 export const Navbar: React.FC<NavbarProps> = ({ activeSection, onNavigate }) => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const { toggleDrawer } = useGlossary();
 
   const navItems = [
     { id: 'intro', label: 'Introducción', icon: Cpu },
@@ -67,6 +69,15 @@ export const Navbar: React.FC<NavbarProps> = ({ activeSection, onNavigate }) => 
                 </button>
               );
             })}
+
+            <button
+              onClick={toggleDrawer}
+              className="ml-2 px-3 py-1.5 rounded-lg bg-cyan-950/60 hover:bg-cyan-500 text-cyan-400 hover:text-slate-950 border border-cyan-700/50 hover:border-cyan-400 transition-all text-xs font-mono font-bold tracking-wide flex items-center gap-1.5 cursor-pointer shadow-sm"
+              title="Abrir Glosario Técnico"
+            >
+              <BookOpen className="w-3.5 h-3.5" />
+              <span>Glosario</span>
+            </button>
           </nav>
 
           {/* Mobile hamburger button */}
@@ -102,6 +113,17 @@ export const Navbar: React.FC<NavbarProps> = ({ activeSection, onNavigate }) => 
               </button>
             );
           })}
+
+          <button
+            onClick={() => {
+              toggleDrawer();
+              setMobileMenuOpen(false);
+            }}
+            className="w-full flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm font-medium text-left text-cyan-300 bg-cyan-950/40 border border-cyan-800/50 mt-2"
+          >
+            <BookOpen className="w-4 h-4 text-cyan-400" />
+            <span>Glosario Técnico de Hardware</span>
+          </button>
         </div>
       )}
     </header>

@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { GitBranch, Cpu, Zap, HardDrive, Wifi, Volume2, ArrowRight, Activity, AlertTriangle } from 'lucide-react';
+import { GlossaryTerm } from './GlossaryTerm';
 
 interface Scenario {
   id: string;
@@ -302,13 +303,13 @@ export const DataFlowSimulator: React.FC = () => {
               <h3 className="text-base font-bold text-white">Topología Clásica (1995 - 2008)</h3>
             </div>
             <p className="text-xs text-slate-300 leading-relaxed mb-4">
-              La CPU no tenía controlador de memoria ni carriles PCIe en su silicio. Todo el tráfico hacia la RAM y la tarjeta gráfica AGP debía viajar obligatoriamente por el <strong>Front Side Bus (FSB)</strong> hacia el <strong>Northbridge</strong>, convirtiendo al FSB en un severo cuello de botella que elevaba la latencia global del sistema.
+              La CPU no tenía controlador de memoria (<GlossaryTerm term="imc">IMC</GlossaryTerm>) ni carriles <GlossaryTerm term="pcie">PCIe</GlossaryTerm> en su silicio. Todo el tráfico hacia la RAM y la tarjeta gráfica <GlossaryTerm term="agp">AGP</GlossaryTerm> debía viajar obligatoriamente por el <GlossaryTerm term="fsb">Front Side Bus (FSB)</GlossaryTerm> hacia el <GlossaryTerm term="northbridge">Northbridge</GlossaryTerm>, convirtiendo al FSB en un severo cuello de botella que elevaba la latencia global del sistema.
             </p>
             <div className="bg-slate-950 p-3 rounded-lg border border-slate-800 text-[11px] font-mono text-rose-300/90 space-y-1">
-              <div>• CPU ↔ Front Side Bus (FSB) ↔ Northbridge</div>
-              <div>• Northbridge ↔ Bus AGP (Gráficos) & RAM SDRAM/DDR</div>
-              <div>• Northbridge ↔ Bus PCI / Propietario ↔ Southbridge</div>
-              <div>• Southbridge ↔ IDE, USB 1.1, Audio AC97, Ranuras PCI</div>
+              <div>• CPU ↔ <GlossaryTerm term="fsb">FSB</GlossaryTerm> ↔ <GlossaryTerm term="northbridge">Northbridge</GlossaryTerm></div>
+              <div>• <GlossaryTerm term="northbridge">Northbridge</GlossaryTerm> ↔ Bus <GlossaryTerm term="agp">AGP</GlossaryTerm> & RAM (<GlossaryTerm term="dual-channel">Dual-Channel</GlossaryTerm>)</div>
+              <div>• <GlossaryTerm term="northbridge">Northbridge</GlossaryTerm> ↔ Bus PCI ↔ <GlossaryTerm term="southbridge">Southbridge</GlossaryTerm></div>
+              <div>• <GlossaryTerm term="southbridge">Southbridge</GlossaryTerm> ↔ IDE/SATA, USB 1.1, Audio AC97, Ranuras PCI</div>
             </div>
           </div>
 
@@ -318,13 +319,13 @@ export const DataFlowSimulator: React.FC = () => {
               <h3 className="text-base font-bold text-white">Topología Moderna PCH / SoC (2009 - Hoy)</h3>
             </div>
             <p className="text-xs text-slate-300 leading-relaxed mb-4">
-              El Northbridge desapareció al integrarse dentro del procesador. El CPU gestiona directamente la memoria DRAM de doble canal y los carriles PCIe de ultra alta velocidad para la GPU y el SSD M.2 primario. El <strong>Chipset (PCH)</strong> subsiste como un concentrador secundario de E/S enlazado por bus serie DMI/PCIe.
+              El <GlossaryTerm term="northbridge">Northbridge</GlossaryTerm> desapareció al integrarse dentro del procesador. El CPU gestiona directamente la memoria DRAM de <GlossaryTerm term="dual-channel">doble canal</GlossaryTerm> y los carriles <GlossaryTerm term="pcie">PCIe</GlossaryTerm> de ultra alta velocidad para la GPU y el SSD <GlossaryTerm term="m2">M.2 primario</GlossaryTerm>. El <GlossaryTerm term="chipset">Chipset (PCH)</GlossaryTerm> subsiste como un concentrador secundario de E/S enlazado por bus serie <GlossaryTerm term="dmi">DMI</GlossaryTerm>/PCIe.
             </p>
             <div className="bg-slate-950 p-3 rounded-lg border border-slate-800 text-[11px] font-mono text-emerald-300/90 space-y-1">
-              <div>• CPU integra IMC (RAM) + 20-28 carriles PCIe Gen 4/5</div>
-              <div>• GPU y M.2 principal conectan directo al zócalo del CPU</div>
-              <div>• Enlace DMI 4.0 x8 / PCIe Uplink (15.75 GB/s) hacia PCH</div>
-              <div>• PCH gestiona SATA, Wi-Fi 7, 2.5GbE LAN, USB4 y audio</div>
+              <div>• CPU integra <GlossaryTerm term="imc">IMC</GlossaryTerm> (RAM) + 20-28 carriles <GlossaryTerm term="pcie">PCIe</GlossaryTerm> Gen 4/5</div>
+              <div>• GPU y <GlossaryTerm term="m2">M.2 principal</GlossaryTerm> conectan directo al <GlossaryTerm term="socket">zócalo del CPU</GlossaryTerm></div>
+              <div>• Enlace <GlossaryTerm term="dmi">DMI 4.0 x8</GlossaryTerm> / PCIe Uplink (15.75 GB/s) hacia <GlossaryTerm term="chipset">PCH</GlossaryTerm></div>
+              <div>• <GlossaryTerm term="chipset">PCH</GlossaryTerm> gestiona <GlossaryTerm term="sata">SATA</GlossaryTerm>, Wi-Fi 7, <GlossaryTerm term="lan">2.5GbE LAN</GlossaryTerm>, USB4 y audio</div>
             </div>
           </div>
         </div>
